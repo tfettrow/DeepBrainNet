@@ -26,18 +26,16 @@ while getopts 'uhd:o:m:' flag; do
   esac
 done
 
-
-CUDA_VISIBLE_DEVICES=$(get_CUDA_VISIBLE_DEVICES) || exit
-export CUDA_VISIBLE_DEVICES
-
-
-
-
 rm -r ../tmp/
 mkdir ../tmp/
 mkdir ../tmp/Test/
 
+
+module load python/3.7
+module load tensorflow/1.14.0
+pip install sklearn
+pip install nibabel --user
+#%module load gcc/5.2.0 openmpi keras
 python Slicer.py $DATA_PATH ../tmp/
 
-module load python/anaconda/3.5.6+tensorflow-gpu+pillow
 python Model_Test.py ../tmp/ ${OUT_PATH}pred.csv $MODEL
