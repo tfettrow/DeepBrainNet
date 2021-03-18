@@ -30,12 +30,15 @@ rm -r ../tmp/
 mkdir ../tmp/
 mkdir ../tmp/Test/
 
-
-module load python/3.7
 module load tensorflow/1.14.0
-pip install sklearn
-pip install nibabel --user
 #%module load gcc/5.2.0 openmpi keras
 python Slicer.py $DATA_PATH ../tmp/
+
+# module load python/3.7
+# module load tensorflow/1.14.0
+# pip install sklearn
+# pip install nibabel --user
+# #%module load gcc/5.2.0 openmpi keras
+# python Slicer.py $DATA_PATH ../tmp/
 
 python Model_Test.py ../tmp/ ${OUT_PATH}pred.csv $MODEL
