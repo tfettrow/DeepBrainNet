@@ -12,7 +12,7 @@
 %     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 function calculate_predictedAge_diff(subject_cell)
-% example
+% example: calculate_predictedAge_diff({'1002','1004'})
 %(1) The purpose of this script is to collect the age information scttered on
 %different folders and calculate the gap between predicted age and chronological age.
 
@@ -24,14 +24,14 @@ function calculate_predictedAge_diff(subject_cell)
 % sub-group of people
 
 dbn_data=readtable('DBN_age_predict.csv');
-for this_subject = 1:length(subject_cell)
-    this_subject_id = subject_cell{this_subject};
+for this_subject_index = 1:length(subject_cell)
+    this_subject_id = subject_cell{this_subject_index};
     this_subject_data = readtable(strcat(this_subject_id,filesep,'subject_info.csv'));
-    actual_age(this_subject) = this_subject_data{1,2};
+    actual_age(this_subject_index) = this_subject_data{1,2};
     
     % find the row for this subject in dbn_orig_data
     this_subject_dbn_data_index = find(contains(dbn_data.ID,this_subject_id));
-    predicted_age(this_subject) = round(dbn_data.Pred_Age(this_subject_dbn_data_index),1);
+    predicted_age(this_subject_index) = round(dbn_data.Pred_Age(this_subject_dbn_data_index),1);
 end
 
 predictedAge_diff = (actual_age - predicted_age);
