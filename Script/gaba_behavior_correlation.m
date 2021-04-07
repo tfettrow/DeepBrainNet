@@ -1,69 +1,75 @@
-cd /blue/rachaelseidler/share/FromExternal/Research_Projects_UF/CRUNCH/GABA_Data/
+%% run this from the GABA folder (being so specific with the path makes it hard to jump between machines.. needs to be more dynamic)
+%% settings
+close all;
+clear,clc
 data=readtable('Kathleen’s GABA data.csv');
+marker_color='#9DC8C8';
+marker_size=50;
+
+%% loading data
 cole_diff=data.cole_diff;
 DBN_diff=data.DBN_diff;
 MoCA_Sum=data.MoCA_Sum;
 Avg_4min_Walk_Speed=data.Avg_4min_Walk_Speed;
-R_MoCA_cole=corrcoef(cole_diff,MoCA_Sum);
-R_Moca_DBN=corrcoef(DBN_diff,MoCA_Sum);
-R_400_cole=corrcoef(cole_diff,Avg_4min_Walk_Speed);
-R_400_DBN=corrcoef(DBN_diff,Avg_4min_Walk_Speed);
-%plot
-subplot(2,2,1)
-x1=cole_diff;
-y1=Avg_4min_Walk_Speed;
-b1=x1\y1;
-yCalc1 = b1*x1;
-c='#9DC8C8';
-sz=50;
-scatter(x1,y1,sz,'filled','MarkerFaceColor',c)
-hold on
-plot(x1,yCalc1)
-xlabel('Cole Brain-PAD')
-ylabel('400m speed')
-title('cole-400')
 
-subplot(2,2,2)
-x=cole_diff;
-y=MoCA_Sum;
-b2=x\y;
-yCalc2 = b2*x;
-c='#9DC8C8';
-sz=50;
-scatter(x,y,sz,'filled','MarkerFaceColor',c)
-hold on
-plot(x,yCalc2)
-xlabel('Cole Brain-PAD')
-ylabel('MoCA')
-title('cole_moca')
 
-subplot(2,2,3)
-x=DBN_diff;
-y=Avg_4min_Walk_Speed;
-b3=x\y;
-yCalc3 = b3*x;
-c='#9DC8C8';
-sz=50;
-scatter(x,y,sz,'filled','MarkerFaceColor',c)
-hold on
-plot(x,yCalc3)
-xlabel('DBN-PAD')
-ylabel('400m speed')
-title('dbn 400')
+%% Cole Vs. MoCA_Sum
+[r,p]=corr(cole_diff,MoCA_Sum);
 
-subplot(2,2,4)
-x=DBN_diff;
-y=MoCA_Sum;
-b4=x\y;
-yCalc4 = b4*x;
-c='#9DC8C8';
-sz=50;
-scatter(x,y,sz,'filled','MarkerFaceColor',c)
-hold on
-plot(x,yCalc4)
-xlabel('DBN-PAD')
-ylabel('Moca')
-title('moca_dbn')
+figure; subplot(2,2,1); hold on;
+scatter(cole_diff,MoCA_Sum,marker_size,'filled','MarkerFaceColor',marker_color)
+xLimits = get(gca,'XLim');
+coefs = polyfit(cole_diff, MoCA_Sum,1);
+fittedX=linspace(xLimits(1), xLimits(2), 100);
+fittedY=polyval(coefs, fittedX);
+plot(fittedX,fittedY,'-')
+text(0.5,0.1,strcat('r=',num2str(round(r,2)), ' m=',num2str(round(coefs(1),3))),'Units','normalized')
+xlabel('Cole Brain-PAD','FontSize',16)
+ylabel('MoCA','FontSize',16)
+title('Cole vs MoCA','FontSize',16)
+
+
+%% DBN Vs. MoCA_Sum
+[r,p]=corr(DBN_diff,MoCA_Sum);
+subplot(2,2,2); hold on
+scatter(DBN_diff,MoCA_Sum,marker_size,'filled','MarkerFaceColor',marker_color)
+xLimits = get(gca,'XLim');
+coefs = polyfit(DBN_diff, MoCA_Sum,1);
+fittedX=linspace(xLimits(1), xLimits(2), 100);
+fittedY=polyval(coefs, fittedX);
+plot(fittedX,fittedY,'-')
+text(0.5,0.1,strcat('r=',num2str(round(r,2)), ' m=',num2str(round(coefs(1),3))),'Units','normalized');
+xlabel('DBN Brain-PAD','FontSize',16)
+ylabel('MoCA','FontSize',16)
+title('DBN vs MoCA','FontSize',16)
+
+%% Cole Vs. Avg_walk_speed
+[r,p]=corr(cole_diff,Avg_4min_Walk_Speed);
+subplot(2,2,3); hold on
+scatter(cole_diff,Avg_4min_Walk_Speed,marker_size,'filled','MarkerFaceColor',marker_color)
+xLimits = get(gca,'XLim');
+coefs = polyfit(cole_diff, Avg_4min_Walk_Speed,1);
+fittedX=linspace(xLimits(1), xLimits(2), 100);
+fittedY=polyval(coefs, fittedX);
+plot(fittedX,fittedY,'-')
+text(0.5,0.1,strcat('r=',num2str(round(r,2)), ' m=',num2str(round(coefs(1),3))),'Units','normalized');
+xlabel('Cole Brain-PAD','FontSize',16)
+ylabel('400m speed','FontSize',16)
+title('Cole vs. 400','FontSize',16)
+
+%% DBN Vs. Avg_walk_speed
+[r,p]=corr(DBN_diff,Avg_4min_Walk_Speed);
+subplot(2,2,4); hold on
+scatter(DBN_diff,Avg_4min_Walk_Speed,marker_size,'filled','MarkerFaceColor',marker_color)
+xLimits = get(gca,'XLim');
+coefs = polyfit(DBN_diff, Avg_4min_Walk_Speed,1);
+fittedX=linspace(xLimits(1), xLimits(2), 100);
+fittedY=polyval(coefs, fittedX);
+plot(fittedX,fittedY,'-')
+text(0.5,0.1,strcat('r=',num2str(round(r,2)), ' m=',num2str(round(coefs(1),3))),'Units','normalized');
+xlabel('DBN Brain-PAD','FontSize',16)
+ylabel('400m speed','FontSize',16)
+title('DBN vs. 400','FontSize',16)
 
 
 
