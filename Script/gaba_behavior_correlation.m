@@ -14,7 +14,7 @@ Avg_4min_Walk_Speed=data.Avg_4min_Walk_Speed;
 
 
 %% Cole Vs. MoCA_Sum
-[r,p]=corr(cole_diff,MoCA_Sum);
+[r,p]=corrcoef(cole_diff,MoCA_Sum);
 
 figure; subplot(2,2,1); hold on;
 scatter(cole_diff,MoCA_Sum,marker_size,'filled','MarkerFaceColor',marker_color)
@@ -23,14 +23,14 @@ coefs = polyfit(cole_diff, MoCA_Sum,1);
 fittedX=linspace(xLimits(1), xLimits(2), 100);
 fittedY=polyval(coefs, fittedX);
 plot(fittedX,fittedY,'-')
-text(0.5,0.1,strcat('r=',num2str(round(r,2)), ' m=',num2str(round(coefs(1),3))),'Units','normalized')
+text(0.5,0.1,strcat('r=',num2str(round(r(1,2),2)), ' m=',num2str(round(coefs(1),3))),'Units','normalized','FontSize',12)
 xlabel('Cole Brain-PAD','FontSize',16)
 ylabel('MoCA','FontSize',16)
 title('Cole vs MoCA','FontSize',16)
 
 
 %% DBN Vs. MoCA_Sum
-[r,p]=corr(DBN_diff,MoCA_Sum);
+[r,p]=corrcoef(DBN_diff,MoCA_Sum);
 subplot(2,2,2); hold on
 scatter(DBN_diff,MoCA_Sum,marker_size,'filled','MarkerFaceColor',marker_color)
 xLimits = get(gca,'XLim');
@@ -38,13 +38,13 @@ coefs = polyfit(DBN_diff, MoCA_Sum,1);
 fittedX=linspace(xLimits(1), xLimits(2), 100);
 fittedY=polyval(coefs, fittedX);
 plot(fittedX,fittedY,'-')
-text(0.5,0.1,strcat('r=',num2str(round(r,2)), ' m=',num2str(round(coefs(1),3))),'Units','normalized');
+text(0.5,0.1,strcat('r=',num2str(round(r(1,2),2)), ' m=',num2str(round(coefs(1),3))),'Units','normalized','FontSize',12);
 xlabel('DBN Brain-PAD','FontSize',16)
 ylabel('MoCA','FontSize',16)
 title('DBN vs MoCA','FontSize',16)
 
 %% Cole Vs. Avg_walk_speed
-[r,p]=corr(cole_diff,Avg_4min_Walk_Speed);
+[r,p]=corrcoef(cole_diff,Avg_4min_Walk_Speed);
 subplot(2,2,3); hold on
 scatter(cole_diff,Avg_4min_Walk_Speed,marker_size,'filled','MarkerFaceColor',marker_color)
 xLimits = get(gca,'XLim');
@@ -52,13 +52,13 @@ coefs = polyfit(cole_diff, Avg_4min_Walk_Speed,1);
 fittedX=linspace(xLimits(1), xLimits(2), 100);
 fittedY=polyval(coefs, fittedX);
 plot(fittedX,fittedY,'-')
-text(0.5,0.1,strcat('r=',num2str(round(r,2)), ' m=',num2str(round(coefs(1),3))),'Units','normalized');
+text(0.5,0.1,strcat('r=',num2str(round(r(1,2),2)), ' m=',num2str(round(coefs(1),3))),'Units','normalized','FontSize',12);
 xlabel('Cole Brain-PAD','FontSize',16)
 ylabel('400m speed','FontSize',16)
 title('Cole vs. 400','FontSize',16)
 
 %% DBN Vs. Avg_walk_speed
-[r,p]=corr(DBN_diff,Avg_4min_Walk_Speed);
+[r,p]=corrcoef(DBN_diff,Avg_4min_Walk_Speed);
 subplot(2,2,4); hold on
 scatter(DBN_diff,Avg_4min_Walk_Speed,marker_size,'filled','MarkerFaceColor',marker_color)
 xLimits = get(gca,'XLim');
@@ -66,7 +66,7 @@ coefs = polyfit(DBN_diff, Avg_4min_Walk_Speed,1);
 fittedX=linspace(xLimits(1), xLimits(2), 100);
 fittedY=polyval(coefs, fittedX);
 plot(fittedX,fittedY,'-')
-text(0.5,0.1,strcat('r=',num2str(round(r,2)), ' m=',num2str(round(coefs(1),3))),'Units','normalized');
+text(0.5,0.1,strcat('r=',num2str(round(r(1,2),2)), ' m=',num2str(round(coefs(1),3))),'Units','normalized','FontSize',12);
 xlabel('DBN Brain-PAD','FontSize',16)
 ylabel('400m speed','FontSize',16)
 title('DBN vs. 400','FontSize',16)
