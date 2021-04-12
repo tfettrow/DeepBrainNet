@@ -34,7 +34,7 @@ for this_subject_index = 1:length(subject_cell)
     predicted_age(this_subject_index) = round(dbn_data.Pred_Age(this_subject_dbn_data_index),1);
 end
 
-predictedAge_diff = (actual_age - predicted_age);
+predictedAge_diff = (predicted_age - actual_age);
 predictedAge_diff_table = table(subject_cell', actual_age', predicted_age', predictedAge_diff');
 predictedAge_diff_table.Properties.VariableNames = {'subject_ids', 'actual_age', 'predicted_age', 'predicted_age_diff'};
  
