@@ -34,7 +34,7 @@ no_labels = parser.Results.no_labels;
 model_name = parser.Results.model_name;
 save_figures = parser.Results.save_figures;
 
-close all;
+% close all;
 project_path = pwd;
 project_path_split = strsplit(project_path,filesep);
 project_folder = project_path_split{end};
