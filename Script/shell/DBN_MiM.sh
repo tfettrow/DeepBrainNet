@@ -13,7 +13,7 @@ pwd; hostname; date
 ### THINGS THAT MAY NEED UPDATED ####
 DBN_dir=/blue/rachaelseidler/tfettrow/Crunch_Code/DeepBrainNet
 Study_dir=/blue/rachaelseidler/share/FromExternal/Research_Projects_UF/CRUNCH/MiM_Data
-subject_array=(1002 1004 1007 1009 1010 1011 1012 1013 1020 1022 1024 1026 1027 2002 2007 2008 2012 2013 2015 2017 2018 2020 2021 2022 2023 2025 2026 2027 2033 2034 2037 2042 2052 3004 3008 3006 3007 3021 3023)
+subject_array=(1002 1004 1007 1009 1010 1011 1012 1013 1020 1022 1024 1026 1027 2002 2007 2008 2012 2013 2015 2017 2018 2020 2021 2022 2023 2025 2026 2027 2033 2034 2037 2042 2052 3004 3008 3006 3007 3021 3023 3024)
 #####################################
 
 cd "$Study_dir"
@@ -28,6 +28,6 @@ done
 
 module load tensorflow/1.14.0
 
-python ${DBN_dir}/Script/Slicer.py ${Study_dir}/temp_data_folder/ ${Study_dir}/temp_processing_folder/
+python ${DBN_dir}/Script/python/Slicer.py ${Study_dir}/temp_data_folder/ ${Study_dir}/temp_processing_folder/
 
-python ${DBN_dir}/Script/Model_Test.py ${Study_dir}/temp_processing_folder/ ${Study_dir}/DBN_age_predict.csv ${DBN_dir}/Models/DBN_model.h5
+python ${DBN_dir}/Script/python/Model_Test.py ${Study_dir}/temp_processing_folder/ ${Study_dir}/DBN_age_predict.csv ${DBN_dir}/Models/DBN_model.h5
