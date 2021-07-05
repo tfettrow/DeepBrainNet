@@ -9,7 +9,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-subject=$1
+subject= (1025 1018 1019 1017 2039 3024 3029 3023 3025 3026 3027 3010 3036)
 
 ml fsl/6.0.1
 Study_dir=/blue/rachaelseidler/share/FromExternal/Research_Projects_UF/CRUNCH/MiM_Data
